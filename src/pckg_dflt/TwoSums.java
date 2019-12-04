@@ -17,14 +17,17 @@ public class TwoSums {
 		int[] ans = new TwoSums().twoSum(new int[] {1,2,3}, 3); 
 		printArray(ans);
 		
-		ans = new TwoSums().twoSum(null, 10);
+		ans = new TwoSums().twoSumSorted(null, 10);
 		printArray(ans);
 
-		ans = new TwoSums().twoSum(new int[] {1,2,3,4}, 10);
+		ans = new TwoSums().twoSumSorted(new int[] {1,2,3,4}, 10);
 		printArray(ans);		
 
-		ans = new TwoSums().twoSum(new int[] {1,2,2,3,5}, 7);
+		ans = new TwoSums().twoSumSorted(new int[] {1,2,2,3,5}, 7);
 		printArray(ans);
+		
+		ans = new TwoSums().twoSum(new int[] {2,7,11,15}, 9);
+		printArray(ans);		
 		
 	}
 
@@ -69,5 +72,39 @@ public class TwoSums {
     	}
     	return null;
     }
+    
+    
+    
+    //1. Two pointers, i begins at 0 and j begins and array.length-1
+    //2. while(two pointers dont cross)
+    //3. if (data[i] + data[j] == target) return {i,j}
+    // if the data[i]+data[j] greater than target, j--
+    // if the data[i]+data[j] smaller than target, i++
+    
+    //4. if we reach end of array, exit and return null
+    
+    public int[] twoSumSorted(int[] nums, int target) {
+    	
+    	if (nums == null) {
+    		return null;
+    	}
+    	
+    	int i = 0;
+    	int j = nums.length-1;
+    	
+    	while (i<j) {
+    		
+    		if (target == nums[i]+nums[j]) {
+    			return new int[] {i,j};
+    		} else if (target < nums[i] + nums[j]) {
+    			j--;
+    		} else if (target > nums[i] + nums[j]) {
+    			i++;
+    		}
+    		
+    	}
+    	
+    	return null;
+    }    
 	
 }
